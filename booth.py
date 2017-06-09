@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 import os
 import time
 
@@ -29,7 +29,7 @@ def handlePickup():
 def handleHangup():
     return
 
-def callFileName():
+def filename():
     return "call-"+str(time.time()).split('.')[0]+".wav"
 
 def runBooth():
