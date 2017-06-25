@@ -1,5 +1,6 @@
 import pyaudio
 import wave
+import time
 
 class Recorder:
     CHUNK = 512
@@ -7,7 +8,7 @@ class Recorder:
     CHANNELS = 1
     RATE = 44100 #sample rate
     RECORD_SECONDS = 5
-    WAVE_OUTPUT_FILENAME = "pyaudio-output.wav"
+    WAVE_OUTPUT_FILENAME = "archive/call_"+str(int(time.time()))+time.strftime("_%I:%M%p_%d_%B_%Y.wav")
 
     def __init__(self):
         """ Init audio stream """ 
