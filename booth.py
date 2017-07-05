@@ -19,7 +19,7 @@ def handlePickup():
     time.sleep(1)
     beep.play()
     time.sleep(.2)
-    recorder = record.Recorder()
+    #recorder = record.Recorder()
     t = threading.Thread(target=recorder.startRecord)
     t.start()
 
