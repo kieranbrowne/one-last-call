@@ -1,6 +1,6 @@
 # [One Last Call](https://www.onelastcall.com/)
 
-
+Will pull latest version from gh on reboot.
 
 ## Setup
 
