@@ -19,13 +19,15 @@ class Recorder:
                         input=True,
                         frames_per_buffer=self.CHUNK) #buffer
 
-        self.recording = True
+        self.frames = []
+        self.recording = False
 
 
     def startRecord(self):
         """ Record audio entire file """
         print("* recording")
         
+        self.recording = True
         self.frames = []
 
         while self.recording:
@@ -39,21 +41,22 @@ class Recorder:
 
     def endRecord(self):
         """ Graceful shutdown """ 
-        print("* done recording")
+        if(self.recording == True):
+            print("* done recording")
 
-        self.recording = False
-        time.sleep(0.1)
+            self.recording = False
+            time.sleep(0.1)
 
-        self.stream.stop_stream()
-        self.stream.close()
-        self.audio.terminate()
+            self.stream.stop_stream()
+            self.stream.close()
+            self.audio.terminate()
         
-        wf = wave.open(self.WAVE_OUTPUT_FILENAME, 'wb')
-        wf.setnchannels(self.CHANNELS)
-        wf.setsampwidth(self.audio.get_sample_size(self.FORMAT))
-        wf.setframerate(self.RATE)
-        wf.writeframes(b''.join(self.frames))
-        wf.close()
+            wf = wave.open(self.WAVE_OUTPUT_FILENAME, 'wb')
+            wf.setnchannels(self.CHANNELS)
+            wf.setsampwidth(self.audio.get_sample_size(self.FORMAT))
+            wf.setframerate(self.RATE)
+            wf.writeframes(b''.join(self.frames))
+            wf.close()
 
     def close(self):
         """ Graceful shutdown """ 
