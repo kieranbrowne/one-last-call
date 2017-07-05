@@ -11,9 +11,6 @@ import threading
 beep = play.Player('beep.wav')
 recorder = record.Recorder()
 
-def saveToCloud():
-    return
-
 def handlePickup():
     print('Picked up')
     time.sleep(1)

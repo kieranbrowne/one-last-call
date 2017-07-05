@@ -1,6 +1,7 @@
 import pyaudio
 import wave
 import time
+import os
 
 class Recorder:
     CHUNK = 512
@@ -45,12 +46,14 @@ class Recorder:
         if(self.recording == True):
             time.sleep(0.1)
 
-            wf = wave.open("archive/call_"+str(int(time.time()))+time.strftime("_%I:%M%p_%d_%B_%Y.wav"), 'wb')
+            filename = "archive/call_"+str(int(time.time()))+time.strftime("_%I:%M%p_%d_%B_%Y.wav")
+            wf = wave.open(filename, 'wb')
             wf.setnchannels(self.CHANNELS)
             wf.setsampwidth(self.audio.get_sample_size(self.FORMAT))
             wf.setframerate(self.RATE)
             wf.writeframes(b''.join(self.frames))
             wf.close()
+            #os.system("scp "+filename+" USER@SERVER:PATH &")
 
         self.recording = False
 
