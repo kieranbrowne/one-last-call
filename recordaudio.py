@@ -39,11 +39,10 @@ class Recorder:
             self.frames.append(data) # 2 bytes(16 bits) per channel
 
     def endRecord(self):
-        """ Graceful shutdown """ 
-        if(self.recording == True):
-            print("* done recording")
+        """ Endrecorded period and save file """ 
+        print("* done recording")
 
-            self.recording = False
+        if(self.recording == True):
             time.sleep(0.1)
 
             wf = wave.open("archive/call_"+str(int(time.time()))+time.strftime("_%I:%M%p_%d_%B_%Y.wav"), 'wb')
@@ -52,6 +51,8 @@ class Recorder:
             wf.setframerate(self.RATE)
             wf.writeframes(b''.join(self.frames))
             wf.close()
+
+        self.recording = False
 
     def close(self):
         """ Graceful shutdown """ 
